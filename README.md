@@ -1,54 +1,56 @@
-# React + TypeScript + Vite
+# 🐞 SnugBug - E-commerce Website for 0 to 5 Year Olds
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SnugBug is a full-stack e-commerce web application tailored for babies and toddlers aged 0 to 5 years. It allows users to browse products, search items, register/login as a customer or seller, add items to cart, and much more.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📁 Project Structure
 
-## Expanding the ESLint configuration
+ecommerce-snugbug/ ├── backend/ # Spring Boot backend (Java + Spring Data JPA) └── frontend/ # React + Vite + TypeScript frontend
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 🛠️ Tech Stack
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 🚀 Frontend
+- [React](https://react.dev/)
+- [Vite](https://vitejs.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 🔧 Backend
+- [Spring Boot](https://spring.io/projects/spring-boot)
+- [Spring Data JPA](https://spring.io/projects/spring-data-jpa)
+- [JWT Authentication](https://jwt.io/)
+- [BCrypt](https://mvnrepository.com/artifact/org.springframework.security/spring-security-crypto)
+- Microsoft SQL Server
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+---
+
+## 🔑 Features
+
+- 🧸 Product catalog for babies (0–5 years)
+- 🔍 Global product search
+- 🛒 Shopping cart with quantity tracking
+- 🔐 JWT-based authentication for customers and sellers
+- 🧾 Seller dashboard to add/manage products
+- 📱 Responsive UI with a playful and modern look
+
+---
+
+## 🧩 Getting Started
+
+### 🖥️ Frontend
+
+```bash
+--- frontend code
+cd ecommerce-snugbug
+npm install
+npm run dev
+Runs on: http://localhost:5173
+---backend code
+cd backend
+./mvnw spring-boot:run
+Runs on: http://localhost:8080
+
+Make sure to configure your application.properties with correct SQL Server DB credentials.
