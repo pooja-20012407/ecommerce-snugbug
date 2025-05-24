@@ -11,7 +11,7 @@ import { useSearch } from '../context/SearchContext';
 
 const Home = () => {
   const navigate = useNavigate();
-    const { searchQuery } = useSearch();
+  const { searchQuery } = useSearch();
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
 
   const products = [
@@ -45,38 +45,48 @@ const Home = () => {
     { name: 'HEALTH', items: ['Thermometers', 'Nasal Aspirators', 'First Aid', 'Supplements', 'Vitamins'] },
     { name: 'BOUTIQUES', items: ['Designer Wear', 'Gift Sets', 'Custom Clothing', 'Occasion Wear', 'Matching Sets'] }
   ];
-
   const filteredProducts = products.filter(product =>
     product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     product.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-  
+  ); 
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
+
+      <div className="custombg py-4 text-sm font-semibold text-gray-700 flex justify-center items-center sticky top-16 z-40 bg-white shadow-md">
+        🎁 Enjoy Free Shipping on 1st Order.{' '}
+        <button onClick={() => navigate('/products/all')} className="ml-2 text-blue-600 underline">
+          Buy Now!
+        </button>
+      </div>
 
       {/* Categories Bar */}
-      <div className="custombg py-4 text-sm font-semibold text-gray-700 flex flex-wrap justify-center gap-6 sticky top-16 z-40 bg-white shadow-md">
-        {categoryList.map((cat, idx) => (
+      <div className="custombg py-4 text-sm font-semibold text-gray-700 flex flex-wrap justify-center gap-6 sticky top-20 z-40 bg-white shadow-md">
+    {categoryList.map((cat, idx) => (
+  <div
+    key={idx}
+    className="relative group"
+    onMouseEnter={() => setHoveredCategory(cat.name)}
+    onMouseLeave={() => setHoveredCategory(cat.name)}
+  >
+    <span className="hover:text-pink-600 cursor-pointer">{cat.name}</span>
+    {hoveredCategory === cat.name && (
+      <div className="absolute top-6 left-0 mt-2 bg-white border rounded shadow-lg py-2 px-4 text-left text-sm w-48">
+        {cat.items.map((item, i) => (
           <div
-            key={idx}
-            className="relative group"
-            onMouseEnter={() => setHoveredCategory(cat.name)}
-            onMouseLeave={() => setHoveredCategory(null)}
+            key={i}
+            className="py-1 hover:text-pink-600 cursor-pointer"
+            onClick={() => navigate(`/products/all?filter=${encodeURIComponent(item)}`)}
           >
-            <span className="hover:text-pink-600 cursor-pointer">{cat.name}</span>
-            {hoveredCategory === cat.name && (
-              <div className="absolute top-6 left-0 mt-2 bg-white border rounded shadow-lg py-2 px-4 text-left text-sm w-48">
-                {cat.items.map((item, i) => (
-                  <div key={i} className="py-1 hover:text-pink-600 cursor-pointer">
-                    {item}
-                  </div>
-                ))}
-              </div>
-            )}
+            {item}
           </div>
         ))}
+      </div>
+    )}
+  </div>
+))}
+
       </div>
 
       {/* Carousel */}

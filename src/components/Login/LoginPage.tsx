@@ -29,7 +29,7 @@ const LoginPage = () => {
 
       // Save token to localStorage
       localStorage.setItem('token', res.data.token);
-
+      localStorage.setItem("email", res.data.email);
       setSuccess('Login successful!');
       navigate('/home');
     } catch (err: any) {
